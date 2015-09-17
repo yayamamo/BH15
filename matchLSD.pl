@@ -18,6 +18,7 @@ binmode STDOUT, "encoding(utf8)";
 
 my $file1 = "/data/yayamamo/LSD/2014/01English.txt";
 my $file2 = "/data/yayamamo/LSD/2014/14synonym_utf8.txt";
+my $file3 = "/data/yayamamo/LSD/2014/16Desc_utf8.txt";
 
 my %dictionary;
 
@@ -28,10 +29,17 @@ while(<$fh>){
     $dictionary{$label} = $id;
 }
 close($fh);
-open($fh, "<:encoding(utf8)", $file2);
+#open($fh, "<:encoding(utf8)", $file2);
+#while(<$fh>){
+#    chomp;
+#    my ($id, $label, undef) = split /\t/, $_, 3;
+#    $dictionary{$label} = $id;
+#}
+#close($fh);
+open($fh, "<:encoding(utf8)", $file3);
 while(<$fh>){
     chomp;
-    my ($id, $label, undef) = split /\t/, $_, 3;
+    my ($id, undef, $label, undef) = split /\t/, $_, 3;
     $dictionary{$label} = $id;
 }
 close($fh);
@@ -91,6 +99,9 @@ while(<$fh>){
 	    }
 	}
     }
+    unless($rv || $trv){
+	print ">>>", join("\t", ($hpid, $label)), "\n";
+    }
 }
 close($fh);
 
@@ -141,7 +152,7 @@ sub matchDict {
 	    $return_value = {
 		"type" => "P",
 		"nofw" => scalar @final,
-		"value" => join("\t", ($hpid, $label, join(" ", @final))),
+		"value" => join("\t", ($hpid, $label, join("$;", @final))),
 	    };
 	}
     }
