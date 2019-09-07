@@ -4,6 +4,8 @@ use warnings;
 use strict;
 use Fatal qw/open/;
 use Getopt::Std;
+use open 'utf8';
+use constant LSD_Version => '2019';
 
 binmode STDIN, ":encoding(utf8)";
 binmode STDOUT, ":encoding(utf8)";
@@ -13,8 +15,8 @@ getopt('s:', \%opts);
 
 die unless($opts{"s"});
 
-my $file1 = "/data/yayamamo/LSD/2014/03Eng-Jap_utf8.txt";
-my $file2 = "/data/yayamamo/LSD/2014/16Desc_utf8.txt";
+my $file1 = "/data/yayamamo/LSD/".LSD_Version."/03Eng-Jap_utf8.txt";
+my $file2 = "/data/yayamamo/LSD/".LSD_Version."/16Desc_utf8.txt";
 my $file3 = "/data/yayamamo/hpo/MP_eav0904_tsv.txt";
 my $file4 = "/data/yayamamo/hpo/Medical-Dictionary.tsv";
 

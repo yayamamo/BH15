@@ -4,6 +4,8 @@ use warnings;
 use strict;
 use Fatal qw/open/;
 use Text::Scan;
+use open 'utf8';
+use constant LSD_Version => '2019';
 
 my $V   = qr/[aeiou]/;
 my $VY  = qr/[aeiouy]/;
@@ -16,9 +18,9 @@ my $PRE = qr/(be|ex|in|mis|pre|pro|re)/;
 binmode STDIN, "encoding(utf8)";
 binmode STDOUT, "encoding(utf8)";
 
-my $file1 = "/data/yayamamo/LSD/2014/01English.txt";
-my $file2 = "/data/yayamamo/LSD/2014/14synonym_utf8.txt";
-my $file3 = "/data/yayamamo/LSD/2014/16Desc_utf8.txt";
+my $file1 = "/data/yayamamo/LSD/".LSD_Version."/01English.txt";
+my $file2 = "/data/yayamamo/LSD/".LSD_Version."/14synonym_utf8.txt";
+my $file3 = "/data/yayamamo/LSD/".LSD_Version."/16Desc_utf8.txt";
 
 my %dictionary;
 
